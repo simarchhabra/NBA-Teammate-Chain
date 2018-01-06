@@ -1,25 +1,28 @@
-from .. import soup_opt as soup
+import sys, os
+sys.path.insert(0, os.path.abspath('..'))
+
+import nbateammatechain.utils.soup_opt as soup
 import re
 
 class Player(object):
     # slots declared to increase efficiency
-    __slots__ = ['_name', '_height', '_weight', '_career_stats', 
-            '_achievements', '_teammates']
+    __slots__ = ['name', 'height', 'weight', 'career_stats', 'achievements', 
+            'teammates']
 
     def __init__(self, name, height, weight, career_stats, achievements):
         # declare all fields in constructor to ensure serialization
-        self._name = name # string
-        self._height = height # int
-        self._weight = weight # int
-        self._career_stats = career_stats # dict
-        self._achievements = achievements # dict
-        self._teammates = {} # dict
+        self.name = name # string
+        self.height = height # int
+        self.weight = weight # int
+        self.career_stats = career_stats # dict
+        self.achievements = achievements # dict
+        self.teammates = {} # dict
 
     def update_teammates(self, key, value):
         """
         Update dictionary of teammates
         """
-        self._teammates[key] = value
+        self.teammates[key] = value
 
 def _convert_height(height):
     """
@@ -34,6 +37,7 @@ def parse_achievement(achievement):
     """
     VALID_ACHIEVEMENT= ["All Star", "All Defensive", "NBA Champ", "All NBA"]
 
+    # achievement string format example: "3x All-Defensive"
     # use regex instead of join to account for a hyphenated string    
     string = re.split('\W+', achievement)  #string is now a list of words
     # get key 
@@ -52,21 +56,21 @@ def parse_achievement(achievement):
         value = int(string[0][:-1])
         return key, value
 
-def create_player(bbref_url):
+def create_player(URL):
     """
     Parses and Analyzes player information to acquire stats and relevant 
     data to create player object, which it returns.
     """
-    bbref_pl = soup.soup_streamline(bbref_url)
+    pl = soup.soup_streamline(URL)
     # all basketball-reference procured data
     
-    namestr = str(bbref_pl.find("h1").string)
+    namestr = str(pl.find("h1").string)
     # returns name of player, exclude unwanted strings
     name = " ".join('{}'.format(i) for i in namestr.split(' ') if i!="Career"
             and i!="Splits")
 
-    height = _convert_height(str(bbref_pl.find(itemprop="height").string))
-    weight = int(str(bbref_pl.find(itemprop="weight").string)[:3])
+    height = _convert_height(str(pl.find(itemprop="height").string))
+    weight = int(str(pl.find(itemprop="weight").string)[:3])
     
     # career stats maps out to 
     # GP, GS, MP, FG, FGA, 3P, 3PA, FT, FTA, TRB, AST, STL, BLK, PTS
@@ -74,16 +78,21 @@ def create_player(bbref_url):
     
     career_stats = {}
     # find siblings in parse tree to start from
-    start = bbref_pl.find(attrs={'data-stat':'split_value'}, string="Total")
-    float_breakpoint = False # initially set key to int
+    start = pl.find(attrs={'data-stat':'split_value'}, string="Total")
+    float_breakpoint = False # initially set the value of a key to int
     for sibling in start.next_siblings:
+        # key corresponds to the name of a particular stat
+        # value is its value in integer or float form
         key = str(sibling['data-stat'])
+        # all stats after float_breakpoint are stored in float form
         if key == "fg_pct":
             float_breakpoint = True
+        # filter keys we don't care for
         filter_basic = key!='orb' and key!='tov' and key!="pf" 
         filter_adv_pct = key!='ts_pct' and key!='usg_pct'
         filter_adv_rtg = key!='off_rtg' and key!='def_rtg'
         if filter_basic and filter_adv_pct and filter_adv_rtg:
+            # if the stat exists
             if sibling.string is not None:
                 if float_breakpoint:
                     value = float(str(sibling.string))
@@ -91,6 +100,7 @@ def create_player(bbref_url):
                     value = int(str(sibling.string))
             else:
                 value = 0
+            # update career_stats dictionary
             career_stats[key] = value
 
     # achievements that include a large subset of players that we care about
@@ -98,16 +108,17 @@ def create_player(bbref_url):
     
     achievements = {}
     # find children in parse tree to start from
-    start = bbref_pl.find(id="bling")
+    start = pl.find(id="bling")
     if start is not None:
         for child in start.children:
             # parse into usable values
+            # key should be name of achievement
+            # value should be the amount of times awarded
             key, value = parse_achievement(str(child.string))
+            # if Nonetype not returned, add award to player achievenment
+            # dictionary
             if key is not None:   
                 achievements[key] = value
 
+    #return player object
     return Player(name, height, weight, career_stats, achievements)
-
-if __name__=='__main_':
-    lebron = create_player("https://www.basketball-reference.com/players/j/jamesle01/splits/")
-    print lebron._career_stats

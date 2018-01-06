@@ -20,33 +20,36 @@ class testPlayer(unittest.TestCase):
         """
         Check name attribute is correct
         """
-        self.assertTrue(self.kobe._name == "Kobe Bryant")
+        self.assertTrue(self.kobe.name == "Kobe Bryant")
 
     def test_height(self):
         """
         Check height attribute is correct
         """
-        self.assertTrue(self.sim._height == 89)
+        self.assertTrue(self.sim.height == 89)
 
     def test_weight(self):
         """
         Check weight attribute is correct
         """
-        self.assertTrue(self.jordan._weight == 195)
+        self.assertTrue(self.jordan.weight == 195)
 
     def test_career_stats(self):
         """
         Check stats dictionary is correct
         """
-        self.assertTrue(self.jordan._career_stats['pts_per_g'] == 30.1)
-        self.assertTrue(self.kobe._career_stats['pts'] == 33643)
-        self.assertIs(self.sim._career_stats['fg3_pct'], 
-                self.sim._career_stats['ft_pct'])
+        self.assertTrue(self.jordan.career_stats['pts_per_g'] == 30.1)
+        self.assertTrue(self.kobe.career_stats['pts'] == 33643)
+        self.assertIs(self.sim.career_stats['fg3_pct'], 
+                self.sim.career_stats['ft_pct'])
 
     def test_achievements(self):
-        self.assertTrue(self.jordan._achievements['All Star'] == 14)
-        self.assertIsNone(self.sim._achievements.get('NBA Champ'))
-        self.assertTrue(self.kobe._achievements.get('All NBA') == 15)
+        """
+        Check achievements dictionary is correct
+        """
+        self.assertTrue(self.jordan.achievements['All Star'] == 14)
+        self.assertIsNone(self.sim.achievements.get('NBA Champ'))
+        self.assertTrue(self.kobe.achievements.get('All NBA') == 15)
 
 if __name__ == '__main__':
     unittest.main()
