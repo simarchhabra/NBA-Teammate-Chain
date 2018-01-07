@@ -1,8 +1,6 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
-import sys, os
-sys.path.insert(0, os.path.abspath('..'))
-
+import context
 import nbateammatechain.players.player as pl
 import unittest2 as unittest
 
@@ -11,10 +9,17 @@ KOBE_URL = "https://www.basketball-reference.com/players/b/bryanko01/splits/"
 SIM_URL = "https://www.basketball-reference.com/players/b/bhullsi01/splits/"
 
 class testPlayer(unittest.TestCase):
-    def setUp(self):
-        self.jordan = pl.create_player(JORDAN_URL)
-        self.kobe = pl.create_player(KOBE_URL) 
-        self.sim = pl.create_player(SIM_URL)
+    """
+    Tests for correct player attribute initialization and parsing
+    """
+    @classmethod
+    def setUpClass(cls):
+        """
+        Class method to initialize member variables
+        """
+        cls.jordan = pl.create_player(JORDAN_URL)
+        cls.kobe = pl.create_player(KOBE_URL) 
+        cls.sim = pl.create_player(SIM_URL)
 
     def test_name(self):
         """
@@ -40,8 +45,7 @@ class testPlayer(unittest.TestCase):
         """
         self.assertTrue(self.jordan.career_stats['pts_per_g'] == 30.1)
         self.assertTrue(self.kobe.career_stats['pts'] == 33643)
-        self.assertIs(self.sim.career_stats['fg3_pct'], 
-                self.sim.career_stats['ft_pct'])
+        self.assertIs(self.sim.career_stats['fg3_pct'], self.sim.career_stats['ft_pct'])
 
     def test_achievements(self):
         """

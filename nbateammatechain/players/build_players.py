@@ -1,8 +1,5 @@
-import sys, os
-sys.path.insert(0, os.path.abspath('..'))
-
 import player as pl
-import nbateammatechain.utils.soup_opt as soup
+from ..utils import soup_opt as soup
 import string
 import time
 
@@ -14,7 +11,7 @@ def store_alphabetical_URLs():
     """
     Returns a list of all possible name urls needed for crawling
     """
-    return [SOURCE_URL+letter+'/' for letter in string.lowercase]
+    return [SOURCE_URL+letter+'/' for letter in string.lowercase if letter!='x']
 
 def store_UIDs(URL):
     """
@@ -33,6 +30,7 @@ def create_player_dict():
     Creates and returns a dictionary of player objects
     """
     player_dict = {}
+    count = 0
     pages = store_alphabetical_URLs() # get a list of player pages to crawl
     for page in pages: # for each name page
         # get a filtered list of player UIDs for each particular name page
@@ -43,6 +41,9 @@ def create_player_dict():
             player_URL = page + UID + ADD_ON
             # create player and add to player dictionary
             player_dict[UID] = pl.create_player(player_URL)
-            time.sleep(1) # ease up on requests, sleep
+            count+=1
+            print("%d: Added %s to the dictionary!" % (count,
+                player_dict[UID].name))
+            time.sleep(0.25) # ease up on requests, sleep
 
     return player_dict

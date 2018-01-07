@@ -1,10 +1,11 @@
-import sys, os
-sys.path.insert(0, os.path.abspath('..'))
-
-import nbateammatechain.utils.soup_opt as soup
+from ..utils import soup_opt as soup
 import re
 
 class Player(object):
+    """
+    Creates a Player object, representing a particular player in the data 
+    structure
+    """
     # slots declared to increase efficiency
     __slots__ = ['name', 'height', 'weight', 'career_stats', 'achievements', 
             'teammates']
@@ -61,13 +62,13 @@ def create_player(URL):
     Parses and Analyzes player information to acquire stats and relevant 
     data to create player object, which it returns.
     """
-    pl = soup.soup_streamline(URL)
-    # all basketball-reference procured data
-    
+    pl = soup.soup_streamline(URL) # all player URL procured data
+    if pl is None:
+        print URL + " is None"
+        return None
     namestr = str(pl.find("h1").string)
     # returns name of player, exclude unwanted strings
-    name = " ".join('{}'.format(i) for i in namestr.split(' ') if i!="Career"
-            and i!="Splits")
+    name = " ".join('{}'.format(i) for i in namestr.split(' ') if i!="Career" and i!="Splits")
 
     height = _convert_height(str(pl.find(itemprop="height").string))
     weight = int(str(pl.find(itemprop="weight").string)[:3])

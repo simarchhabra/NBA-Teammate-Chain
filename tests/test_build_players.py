@@ -1,8 +1,6 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
-import sys, os
-sys.path.insert(0, os.path.abspath('..'))
-
+import context
 from nbateammatechain.players import build_players, player
 import unittest2 as unittest
 import time
@@ -19,17 +17,21 @@ def build_mini_player_dict():
         for j in range(5):
             player_URL = pages[i] + UIDs[j] + "/splits/"
             player_dict[UIDs[j]] = player.create_player(player_URL)
+            print("Created player %s" % player_dict[UIDs[j]].name)
             time.sleep(1)
 
     return player_dict
 
 class testPlayerDict(unittest.TestCase):
-    
-    def setUp(self):
+    """
+    Tests for correct creation of a dictionary of player objects
+    """
+    @classmethod
+    def setUpClass(cls):
         """
-        Override default setUp method
+        Initializes data members for testing
         """
-        self.player_dict = build_mini_player_dict()
+        cls.player_dict = build_mini_player_dict()
 
     def test_keys(self):
         """
@@ -44,10 +46,9 @@ class testPlayerDict(unittest.TestCase):
         Ensures values of player_dict are correct
         """
         a = 'All Star'
-        ast = 'ast'
+        ppg = 'pts_per_g'
         self.assertTrue(self.player_dict['abdursh01'].achievements[a] == 1)
-        self.assertTrue(self.player_dict['babbilu01'].career_stats[ast] == 
-                215)
+        self.assertTrue(self.player_dict['babicmi01'].career_stats[ppg] == 1.8)
         self.assertTrue(self.player_dict['babbch01'].height == 77)
 
 if __name__ == '__main__':
