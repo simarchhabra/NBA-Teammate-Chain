@@ -7,14 +7,15 @@ class Player(object):
     structure
     """
     # slots declared to increase efficiency
-    __slots__ = ['name', 'height', 'weight', 'career_stats', 'achievements', 
-            'teammates']
+    __slots__ = ['name', 'height', 'weight', 'year', 'career_stats',
+    'achievements', 'teammates']
 
-    def __init__(self, name, height, weight, career_stats, achievements):
+    def __init__(self, name, height, weight, year, career_stats, achievements):
         # declare all fields in constructor to ensure serialization
         self.name = name # string
         self.height = height # int
         self.weight = weight # int
+        self.year = year # int
         self.career_stats = career_stats # dict
         self.achievements = achievements # dict
         self.teammates = {} # dict
@@ -40,7 +41,7 @@ def parse_achievement(achievement):
 
     # achievement string format example: "3x All-Defensive"
     # use regex instead of join to account for a hyphenated string    
-    string = re.split('\W+', achievement)  #string is now a list of words
+    string = re.split('\W+', achievement)  # string is now a list of words
     # get key 
     # this is a string such as "NBA champ" or "All Defensive"
     key = " ".join(string[1:3])
@@ -70,9 +71,16 @@ def create_player(URL):
     # returns name of player, exclude unwanted strings
     name = " ".join('{}'.format(i) for i in namestr.split(' ') if i!="Career" and i!="Splits")
 
-    height = _convert_height(str(pl.find(itemprop="height").string))
-    weight = int(str(pl.find(itemprop="weight").string)[:3])
-    
+    height = _convert_height(pl.find(itemprop="height").string)
+    weight = int(pl.find(itemprop="weight").string[:3])
+
+    for p in pl.find_all('p'):
+        if 'Draft' in p.getText():
+            for a in p.find_all('a'):
+                if a.string[-9:] == 'NBA Draft':
+                    global year
+                    year = int(a.string[:4])+1
+
     # career stats maps out to 
     # GP, GS, MP, FG, FGA, 3P, 3PA, FT, FTA, TRB, AST, STL, BLK, PTS
     # FG%, 3P%, FT%, mpg, ppg, rpg, apg
@@ -96,9 +104,9 @@ def create_player(URL):
             # if the stat exists
             if sibling.string is not None:
                 if float_breakpoint:
-                    value = float(str(sibling.string))
+                    value = float(sibling.string)
                 else:
-                    value = int(str(sibling.string))
+                    value = int(sibling.string)
             else:
                 value = 0
             # update career_stats dictionary
@@ -115,11 +123,11 @@ def create_player(URL):
             # parse into usable values
             # key should be name of achievement
             # value should be the amount of times awarded
-            key, value = parse_achievement(str(child.string))
+            key, value = parse_achievement(child.string)
             # if Nonetype not returned, add award to player achievenment
             # dictionary
             if key is not None:   
                 achievements[key] = value
 
     #return player object
-    return Player(name, height, weight, career_stats, achievements)
+    return Player(name, height, weight, year, career_stats, achievements)

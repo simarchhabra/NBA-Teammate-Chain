@@ -39,6 +39,12 @@ class testPlayer(unittest.TestCase):
         """
         self.assertTrue(self.jordan.weight == 195)
 
+    def test_year(self):
+        """
+        Check year attribute is correct
+        """
+        self.assertTrue(self.jordan.year == 1985)
+
     def test_career_stats(self):
         """
         Check stats dictionary is correct

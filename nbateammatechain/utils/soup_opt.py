@@ -10,4 +10,4 @@ def soup_streamline(url):
     except:
         return None
 
-    return BeautifulSoup(r.text, "html.parser")
+    return BeautifulSoup(r.text, "lxml")
