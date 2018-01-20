@@ -196,13 +196,20 @@ class Team(object):
                         # if the teammate doesn't already exist
                         if self.roster[pl][0].teammates.get(teammate) is None:
                             # update teammate dict of current player
-                            # key = teammate id, value = teammate name
+                            # key = teammate id, value = (team, year)
 
                             # value is not a Player object, due to bugs 
                             # that occur when pickling recursive data structures
+                            value = [[self.team, str(self.year)]]
                             self.roster[pl][0].update_teammates(teammate,
-                                    self.roster[teammate][0].name)
-                            
+                                    value)
+                        else:
+
+                            value = self.roster[pl][0].teammates[teammate]
+                            value.append([self.team, str(self.year)])
+                            self.roster[pl][0].update_teammates(teammate,
+                                    value)
+
 def full_teammates():
     """
     Function that iterates through all teams available, creating their roster

@@ -40,7 +40,7 @@ def create_player_dict():
             # store player page URL
             player_URL = page + UID + ADD_ON
             # create player and add to player dictionary
-            player_dict[UID] = pl.create_player(player_URL)
+            player_dict[UID] = pl.create_player(player_URL, UID)
             while player_dict[UID] is None:
                 player_dict[UID] = pl.create_player(player_URL)
                 print ("Had to recreate player %s" % UID)

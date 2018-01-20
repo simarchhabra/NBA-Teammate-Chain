@@ -16,7 +16,7 @@ def build_mini_player_dict():
         UIDs = build_players.store_UIDs(pages[i])
         for j in range(5):
             player_URL = pages[i] + UIDs[j] + "/splits/"
-            player_dict[UIDs[j]] = player.create_player(player_URL)
+            player_dict[UIDs[j]] = player.create_player(player_URL, UIDs[j])
             print("Created player %s" % player_dict[UIDs[j]].name)
             time.sleep(1)
 

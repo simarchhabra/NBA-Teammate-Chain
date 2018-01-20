@@ -7,11 +7,12 @@ class Player(object):
     structure
     """
     # slots declared to increase efficiency
-    __slots__ = ['name', 'height', 'weight', 'year', 'career_stats',
+    __slots__ = ['uid', 'name', 'height', 'weight', 'year', 'career_stats',
     'achievements', 'teammates']
 
-    def __init__(self, name, height, weight, year, career_stats, achievements):
+    def __init__(self, uid, name, height, weight, year, career_stats, achievements):
         # declare all fields in constructor to ensure serialization
+        self.uid = uid # string
         self.name = name # string
         self.height = height # int
         self.weight = weight # int
@@ -20,6 +21,7 @@ class Player(object):
         self.achievements = achievements # dict
         self.teammates = {} # dict
 
+    def store_id = 
     def update_teammates(self, key, value):
         """
         Update dictionary of teammates
@@ -58,7 +60,7 @@ def parse_achievement(achievement):
         value = int(string[0][:-1])
         return key, value
 
-def create_player(URL):
+def create_player(URL, uid):
     """
     Parses and Analyzes player information to acquire stats and relevant 
     data to create player object, which it returns.
@@ -130,4 +132,4 @@ def create_player(URL):
                 achievements[key] = value
 
     #return player object
-    return Player(name, height, weight, year, career_stats, achievements)
+    return Player(uid, name, height, weight, year, career_stats, achievements)
