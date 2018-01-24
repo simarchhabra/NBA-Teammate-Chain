@@ -58,35 +58,65 @@ selections but result in a longer path.
 The following is the key for attributes tested:
 
 DESCRIPTION                                     KEY
+
 -----------                                     ---
+
 Height                                          height
+
 Weight                                          weight
+
 Games Played                                    g
+
 Games Started                                   gs
+
 Career Minutes                                  mp
+
 Career Points                                   pts
+
 Career Assists                                  ast
+
 Career Rebounds                                 trb
+
 Career Steals                                   stl
+
 Career Blocks                                   blk
+
 Career Field Goals Attempted                    fga
+
 Career Three Point Field Goals Attempted        fg3a
+
 Career Free Throws Attempted                    fta
+
 Career Field Goals Made                         fg
+
 Career Three Point Field Goals Made             fg3
+
 Career Free Throws Made                         ft
+
 Career Field Goal Percentage                    fg_pct
+
 Career Three Point Field Goal Percentage        fg3_pct
+
 Career Free Throw Percentage                    ft_pct
+
 Career Minutes Per Game                         mp_per_g
+
 Career Points Per Game                          pts_per_g
+
 Career Assist Per Game                          ast_per_g
+
 Career Rebounds Per Game                        trb_per_g
+
 Career Steals Per Game                          stl_per_g
+
 Career Blocks Per Game                          blk_per_g
+
 All Defensive Selections                        All Defensive
+
 All NBA Selections                              All NBA
+
 All Star Selections                             All Star
+
 NBA Championships Won                           NBA Champ
 
 Operations with attributes that may result in a heavy number of people having
