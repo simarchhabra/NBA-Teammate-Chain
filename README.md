@@ -56,68 +56,63 @@ selections but result in a longer path.
 ##### Extra Information about the program
 
 The following is the key for attributes tested:
+Height
 
-DESCRIPTION&nbsp;                                     KEY
+Weight
 
------------&nbsp;                                     ---
+Games Played
 
-Height&nbsp;                                          height
+Games Started
 
-Weight&nbsp;                                          weight
+Career Minutes
 
-Games Played&nbsp;                                    g
+Career Points
 
-Games Started&nbsp;                                   gs
+Career Assists
 
-Career Minutes&nbsp;                                  mp
+Career Rebounds
 
-Career Points&nbsp;                                   pts
+Career Steals
 
-Career Assists&nbsp;                                  ast
+Career Blocks
 
-Career Rebounds&nbsp;                                 trb
+Career Field Goals Attempted
 
-Career Steals&nbsp;                                   stl
+Career Three Point Field Goals Attempted
 
-Career Blocks&nbsp;                                   blk
+Career Free Throws Attempted
 
-Career Field Goals Attempted&nbsp;                    fga
+Career Field Goals Made
 
-Career Three Point Field Goals Attempted&nbsp;        fg3a
+Career Three Point Field Goals Made
 
-Career Free Throws Attempted&nbsp;                    fta
+Career Free Throws Made
 
-Career Field Goals Made&nbsp;                         fg
+Career Field Goal Percentage
 
-Career Three Point Field Goals Made&nbsp;             fg3
+Career Three Point Field Goal Percentage
 
-Career Free Throws Made&nbsp;                         ft
+Career Free Throw Percentage
 
-Career Field Goal Percentage&nbsp;                    fg_pct
+Career Minutes Per Game
 
-Career Three Point Field Goal Percentage&nbsp;        fg3_pct
+Career Points Per Game
 
-Career Free Throw Percentage&nbsp;                    ft_pct
+Career Assist Per Game
 
-Career Minutes Per Game&nbsp;                         mp_per_g
+Career Rebounds Per Game
 
-Career Points Per Game&nbsp;                          pts_per_g
+Career Steals Per Game
 
-Career Assist Per Game&nbsp;                          ast_per_g
+Career Blocks Per Game
 
-Career Rebounds Per Game&nbsp;                        trb_per_g
+All Defensive Selections
 
-Career Steals Per Game&nbsp;                          stl_per_g
+All NBA Selections
 
-Career Blocks Per Game&nbsp;                          blk_per_g
+All Star Selections
 
-All Defensive Selections&nbsp;                        All Defensive
-
-All NBA Selections&nbsp;                              All NBA
-
-All Star Selections&nbsp;                             All Star
-
-NBA Championships Won&nbsp;                           NBA Champ
+NBA Championships Won
 
 Operations with attributes that may result in a heavy number of people having
 that attribute value (such as height), a user may need to manually increase the 
