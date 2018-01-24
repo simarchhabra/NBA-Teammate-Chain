@@ -57,67 +57,67 @@ selections but result in a longer path.
 
 The following is the key for attributes tested:
 
-DESCRIPTION                                     KEY
+DESCRIPTION&nbsp;                                     KEY
 
------------                                     ---
+-----------&nbsp;                                     ---
 
-Height                                          height
+Height&nbsp;                                          height
 
-Weight                                          weight
+Weight&nbsp;                                          weight
 
-Games Played                                    g
+Games Played&nbsp;                                    g
 
-Games Started                                   gs
+Games Started&nbsp;                                   gs
 
-Career Minutes                                  mp
+Career Minutes&nbsp;                                  mp
 
-Career Points                                   pts
+Career Points&nbsp;                                   pts
 
-Career Assists                                  ast
+Career Assists&nbsp;                                  ast
 
-Career Rebounds                                 trb
+Career Rebounds&nbsp;                                 trb
 
-Career Steals                                   stl
+Career Steals&nbsp;                                   stl
 
-Career Blocks                                   blk
+Career Blocks&nbsp;                                   blk
 
-Career Field Goals Attempted                    fga
+Career Field Goals Attempted&nbsp;                    fga
 
-Career Three Point Field Goals Attempted        fg3a
+Career Three Point Field Goals Attempted&nbsp;        fg3a
 
-Career Free Throws Attempted                    fta
+Career Free Throws Attempted&nbsp;                    fta
 
-Career Field Goals Made                         fg
+Career Field Goals Made&nbsp;                         fg
 
-Career Three Point Field Goals Made             fg3
+Career Three Point Field Goals Made&nbsp;             fg3
 
-Career Free Throws Made                         ft
+Career Free Throws Made&nbsp;                         ft
 
-Career Field Goal Percentage                    fg_pct
+Career Field Goal Percentage&nbsp;                    fg_pct
 
-Career Three Point Field Goal Percentage        fg3_pct
+Career Three Point Field Goal Percentage&nbsp;        fg3_pct
 
-Career Free Throw Percentage                    ft_pct
+Career Free Throw Percentage&nbsp;                    ft_pct
 
-Career Minutes Per Game                         mp_per_g
+Career Minutes Per Game&nbsp;                         mp_per_g
 
-Career Points Per Game                          pts_per_g
+Career Points Per Game&nbsp;                          pts_per_g
 
-Career Assist Per Game                          ast_per_g
+Career Assist Per Game&nbsp;                          ast_per_g
 
-Career Rebounds Per Game                        trb_per_g
+Career Rebounds Per Game&nbsp;                        trb_per_g
 
-Career Steals Per Game                          stl_per_g
+Career Steals Per Game&nbsp;                          stl_per_g
 
-Career Blocks Per Game                          blk_per_g
+Career Blocks Per Game&nbsp;                          blk_per_g
 
-All Defensive Selections                        All Defensive
+All Defensive Selections&nbsp;                        All Defensive
 
-All NBA Selections                              All NBA
+All NBA Selections&nbsp;                              All NBA
 
-All Star Selections                             All Star
+All Star Selections&nbsp;                             All Star
 
-NBA Championships Won                           NBA Champ
+NBA Championships Won&nbsp;                           NBA Champ
 
 Operations with attributes that may result in a heavy number of people having
 that attribute value (such as height), a user may need to manually increase the 
