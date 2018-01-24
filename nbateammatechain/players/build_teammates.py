@@ -5,7 +5,7 @@ from ..utils import serialize, soup_opt, convert_date
 # years we care about
 B_YEAR = 1984
 E_YEAR = 2018
-# player_dict = serialize.load_pickle('../raw_files/player_dict.pickle')
+#player_dict = serialize.load_pickle('../raw_files/player_dict.pickle')
 
 # create player dictionary (w/o teammates)
 player_dict = build_players.create_player_dict()
@@ -196,17 +196,18 @@ class Team(object):
                         # if the teammate doesn't already exist
                         if self.roster[pl][0].teammates.get(teammate) is None:
                             # update teammate dict of current player
-                            # key = teammate id, value = (team, year)
+                            # key = teammate id, value = [team, year]
 
                             # value is not a Player object, due to bugs 
                             # that occur when pickling recursive data structures
-                            value = [[self.team, str(self.year)]]
+                            value = [[self.team_name, str(self.year)]]
                             self.roster[pl][0].update_teammates(teammate,
                                     value)
                         else:
-
+                            # if teammate does exst
+                            # append [team, year] to value
                             value = self.roster[pl][0].teammates[teammate]
-                            value.append([self.team, str(self.year)])
+                            value.append([self.team_name, str(self.year)])
                             self.roster[pl][0].update_teammates(teammate,
                                     value)
 

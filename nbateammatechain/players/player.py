@@ -21,7 +21,6 @@ class Player(object):
         self.achievements = achievements # dict
         self.teammates = {} # dict
 
-    def store_id = 
     def update_teammates(self, key, value):
         """
         Update dictionary of teammates
@@ -67,7 +66,7 @@ def create_player(URL, uid):
     """
     pl = soup.soup_streamline(URL) # all player URL procured data
     if pl is None:
-        print URL + " is None"
+        print (URL + " is None")
         return None
     namestr = str(pl.find("h1").string)
     # returns name of player, exclude unwanted strings
