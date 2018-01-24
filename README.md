@@ -20,7 +20,7 @@ acquire data, this program parses information from basketball-reference.com and
 takes around 2 hours to run. There will be an option for acquiring data in the
 main script.
 
-#### Example Usage
+### Example Usage
 
 To run the program, simply execute the main.py script
 
@@ -53,9 +53,10 @@ This continues until Kobe Bryant is reached. Note that this is the shortest
 path from Jordan to Kobe, as other teammates may have equivalent number of
 selections but result in a longer path.
 
-##### Extra Information about the program
+### Extra Information about the program
 
-The following is the key for attributes tested:
+The following attributes are tested:
+
 Height
 
 Weight
