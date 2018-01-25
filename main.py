@@ -63,7 +63,7 @@ if player_update:
     except OSError:
         pass
     serialize.create_pickle(filename, player_dict)
-    shutil.move(filename, "/raw_files/")
+    shutil.move(filename, "raw_files/")
 
 print("\n\nLoading Player Data and Building Graph Connections...")
 import nbateammatechain.graph.player_graph as graph
